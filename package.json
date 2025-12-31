@@ -1,0 +1,50 @@
+{
+  "name": "@icms/components",
+  "version": "0.1.0",
+  "private": false,
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": [
+    "dist/styles.css"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.cjs.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup src/index.tsx --dts --format cjs,esm --sourcemap --out-dir dist",
+    "dev": "tsup --watch src/index.tsx --dts --format cjs,esm --out-dir dist",
+    "build:css": "tailwindcss -i src/styles/globals.css -o dist/styles.css --minify",
+    "postbuild": "npm run build:css",
+    "prepare": "npm run build",
+    "playground:dev": "cd playground && npm install && npm run dev",
+    "playground:build": "cd playground && npm run build"
+  },
+  "peerDependencies": {
+    "next": ">=13",
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "autoprefixer": "^10.0.0",
+    "clsx": "^2.1.1",
+    "postcss": "^8.0.0",
+    "tailwindcss": "^3.0.0",
+    "tsup": "^8.5.1",
+    "typescript": "^5.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "react-icons": "^5.5.0"
+  }
+}
