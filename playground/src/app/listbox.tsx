@@ -21,7 +21,6 @@ export default function ListBox() {
                         id: 'a2',
                         title: 'list box1',
                         disabled: true,
-  
                     },
                     {
                         id: 'a3',

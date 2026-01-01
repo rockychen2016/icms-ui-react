@@ -45,7 +45,7 @@ export default function ICMSPageFooter({
 				`w-full ${className}`
 			}
 		>
-			<div className="mx-auto px-6 sm:px-6 lg:px-8 py-8">
+			<div className="mx-auto px-3 sm:px-3 lg:px-3 py-8">
 				<div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
 					<div className="flex-shrink-0">{startContent}</div>
 

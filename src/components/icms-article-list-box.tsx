@@ -15,6 +15,7 @@ export type ArticleItem = {
 
 type ICMSArticleListProps = {
     items: ArticleItem[];
+    highlightFirst?: boolean,
     className?: string;
     onItemClick?: (item: ArticleItem) => void;
 };
@@ -43,10 +44,14 @@ function formatDate(input?: string | number | Date) {
     return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${hhmm}`;
 }
 
-export default function ICMSArticleList({ items, className, onItemClick }: ICMSArticleListProps) {
+export default function ICMSArticleList({ items, className, highlightFirst = true, onItemClick }: ICMSArticleListProps) {
     if (!items || items.length === 0) return null;
 
-    const [first, ...rest] = items;
+    let [first, ...rest] = items;
+    if (!highlightFirst) {
+        first = { title: '' };
+        rest = [...items];
+    }
 
     const onTap = useCallback((item: ArticleItem) => {
         if (onItemClick && typeof onItemClick === 'function') {
@@ -58,40 +63,44 @@ export default function ICMSArticleList({ items, className, onItemClick }: ICMSA
 
         <div className={`w-full p-3 ${className ?? ''}`}>
             {/* First item: if has image, show full-width image with title overlay */}
-            {first.imageUrl ? (
-                first.link ?
-                    <a className='block' title={first.title} href={first.link.href} target={first.link.target ?? '_self'}>
-                        <article className="w-full mb-4">
-                            <div className="relative w-full overflow-hidden rounded-md">
-                                <img src={first.imageUrl} alt={typeof first.title === 'string' ? first.title : 'image'} className="w-full h-56 object-cover" />
-                                <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/70 to-transparent">
-                                    <h3 className="text-white text-lg font-semibold truncate">{first.title}</h3>
+            {
+                first.title.length > 0 ? (
+                    first.imageUrl ? (
+                        first.link ?
+                            <a className='block' title={first.title} href={first.link.href} target={first.link.target ?? '_self'}>
+                                <article className="w-full mb-4">
+                                    <div className="relative w-full overflow-hidden rounded-md">
+                                        <img src={first.imageUrl} alt={typeof first.title === 'string' ? first.title : 'image'} className="w-full h-56 object-cover" />
+                                        <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/70 to-transparent">
+                                            <h3 className="text-white text-lg font-semibold truncate">{first.title}</h3>
+                                        </div>
+                                    </div>
+                                </article>
+                            </a>
+                            :
+                            <article className="w-full mb-4" onClick={() => onTap(first)}>
+                                <div className="relative w-full overflow-hidden rounded-md">
+                                    <img src={first.imageUrl} alt={typeof first.title === 'string' ? first.title : 'image'} className="w-full h-56 object-cover" />
+                                    <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/70 to-transparent">
+                                        <h3 className="text-white text-lg font-semibold truncate">{first.title}</h3>
+                                    </div>
                                 </div>
-                            </div>
-                        </article>
-                    </a>
-                    :
-                    <article className="w-full mb-4" onClick={() => onTap(first)}>
-                        <div className="relative w-full overflow-hidden rounded-md">
-                            <img src={first.imageUrl} alt={typeof first.title === 'string' ? first.title : 'image'} className="w-full h-56 object-cover" />
-                            <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/70 to-transparent">
-                                <h3 className="text-white text-lg font-semibold truncate">{first.title}</h3>
-                            </div>
-                        </div>
-                    </article>
-            ) : (
-                first.link ?
-                    <a className='block' href={first.link.href} target={first.link.target ?? '_self'} title={first.title}>
-                        <article className="mb-4 p-3 rounded-md bg-white dark:bg-gray-800">
-                            <h3 className="text-gray-900 dark:text-gray-100 text-lg font-semibold">{first.title}</h3>
-                            {first.description ? <p className="text-sm text-gray-600 dark:text-gray-300 mt-1 line-clamp-3">{first.description}</p> : null}
-                        </article>
-                    </a> :
-                    <article className="mb-4 p-3 rounded-md bg-white dark:bg-gray-800" onClick={() => onTap(first)}>
-                        <h3 className="text-gray-900 dark:text-gray-100 text-lg font-semibold">{first.title}</h3>
-                        {first.description ? <p className="text-sm text-gray-600 dark:text-gray-300 mt-1 line-clamp-3">{first.description}</p> : null}
-                    </article>
-            )}
+                            </article>
+                    ) : (
+                        first.link ?
+                            <a className='block' href={first.link.href} target={first.link.target ?? '_self'} title={first.title}>
+                                <article className="mb-4 p-3 rounded-md bg-white dark:bg-gray-800">
+                                    <h3 className="text-gray-900 dark:text-gray-100 text-lg font-semibold">{first.title}</h3>
+                                    {first.description ? <p className="text-sm text-gray-600 dark:text-gray-300 mt-1 line-clamp-3">{first.description}</p> : null}
+                                </article>
+                            </a> :
+                            <article className="mb-4 p-3 rounded-md bg-white dark:bg-gray-800" onClick={() => onTap(first)}>
+                                <h3 className="text-gray-900 dark:text-gray-100 text-lg font-semibold">{first.title}</h3>
+                                {first.description ? <p className="text-sm text-gray-600 dark:text-gray-300 mt-1 line-clamp-3">{first.description}</p> : null}
+                            </article>
+                    )
+                ) : null
+            }
 
             <ul className="divide-y divide-gray-200 dark:divide-gray-700">
                 {rest.map((it) => (

@@ -5,13 +5,13 @@ export { default as ICMSNavbar } from './components/icms-navbar';
 export type { ICMSMenuItem, ICMSNavbarProps } from './components/icms-navbar';
 
 export { default as ICMSSearch } from './components/icms-search';
-export type {ICMSSearchProps} from './components/icms-search';
+export type { ICMSSearchProps } from './components/icms-search';
 
 export { default as ICMSPageFooter } from './components/icms-page-footer';
 export type { FooterNavItem, FooterColumn, ICMSPageFooterProps } from './components/icms-page-footer';
 
 export { default as ICMSCard } from './components/icms-card';
-export type {ICMSCardProps} from './components/icms-card';
+export type { ICMSCardProps } from './components/icms-card';
 
 export { default as ICMSListBox } from './components/icms-list-box';
 export type { ListItem, ICMSListBoxProps } from './components/icms-list-box';
@@ -21,3 +21,9 @@ export type { ArticleItem as ICMSArticleItem } from './components/icms-article-l
 
 export { default as ICMSUser } from './components/icms-user';
 export type { ICMSUserProps } from './components/icms-user';
+
+export { default as ICMSCommentCard } from './components/icms-comment-card';
+export type { ICMSCommentCardProps } from './components/icms-comment-card'
+
+export { default as ICMSPicBox } from './components/icms-pic-box'
+export type { ICMSImageProps, ICMSLinkProps, ICMSPicBoxProps } from './components/icms-pic-box'

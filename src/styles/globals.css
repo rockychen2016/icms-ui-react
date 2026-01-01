@@ -3,11 +3,6 @@
 @tailwind utilities;
 
 /* library base styles */
-:root {
-  --icms-accent: #2563eb;
-  --icms-dark:#333333;
-}
-
-.dark-bg{
-  background-color: var(--icms-dark);
+@theme {
+  --color-icms-dark:#333333;
 }
