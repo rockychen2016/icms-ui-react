@@ -27,3 +27,6 @@ export type { ICMSCommentCardProps } from './components/icms-comment-card'
 
 export { default as ICMSPicBox } from './components/icms-pic-box'
 export type { ICMSImageProps, ICMSLinkProps, ICMSPicBoxProps } from './components/icms-pic-box'
+
+export { default as ICMSPageination } from './components/icms-pagination';
+export type { ICMSPageInfo, ICMSPaginationProps } from './components/icms-pagination'

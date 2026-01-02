@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 html,body,#__next{height:100%}
 body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto}
 .container{padding:15px}

@@ -8,7 +8,7 @@ import ICMSCommentCard from '@/components/icms-comment-card'
 import ICMSPicBox from '@/components/icms-pic-box';
 import ListBox from './listbox';
 import ArticleListBox from './articleListbox';
-
+import ICMSPagination from '@/components/icms-pagination';
 
 export default function Page() {
   return (
@@ -95,6 +95,17 @@ export default function Page() {
           user={{
             name: 'rocky.chen',
             description: '26/01/01'
+          }}
+        />
+      </div>
+      <div className='flex flex-col py-10 gap-5'>
+        <div>分页：</div>
+        <ICMSPagination
+          size='sm'
+          pageInfo={{
+            pageNo: 1,
+            pageSize: 20,
+            total: 200
           }}
         />
       </div>

@@ -6,3 +6,9 @@
 @theme {
   --color-icms-dark:#333333;
 }
+
+.icms-pagination-item{
+  display: flex !important;
+  padding: 4px !important;
+  background-color: blue !important;
+}
