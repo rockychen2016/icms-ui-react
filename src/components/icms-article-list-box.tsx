@@ -1,5 +1,6 @@
 'use client'
 import { useCallback } from 'react';
+import { clsx } from 'clsx';
 
 
 export type ArticleItem = {
@@ -62,7 +63,7 @@ export default function ICMSArticleList({ items, className, highlightFirst = tru
 
     return (
 
-        <div className={`w-full p-3 ${className ?? ''}`}>
+        <div className={clsx('w-full', className)}>
             {/* First item: if has image, show full-width image with title overlay */}
             {
                 first.title.length > 0 ? (
@@ -103,7 +104,7 @@ export default function ICMSArticleList({ items, className, highlightFirst = tru
                 ) : null
             }
 
-            <ul className="divide-y divide-gray-200 dark:divide-gray-700">
+            <ul className="divide-y divide-zinc-200 dark:divide-zinc-800">
                 {rest.map((it) => (
                     <li key={it.id ?? String(it.title)} className="py-3">
                         {

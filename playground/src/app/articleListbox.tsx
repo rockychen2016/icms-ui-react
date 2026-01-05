@@ -3,7 +3,7 @@ import ICMSArticleList from "@/components/icms-article-list-box";
 
 export default function ArticleListBox() {
     return (
-        <div className="mt-6">
+        <div className="px-3 mt-6">
             <ICMSArticleList
                 onItemClick={(item) => console.log(item.title)}
                 items={[

@@ -1,5 +1,6 @@
 'use client'
 import React from 'react';
+import { clsx } from 'clsx';
 
 export type ListItem = {
   id?: string | number;
@@ -20,10 +21,10 @@ export type ICMSListBoxProps = {
   onItemClick?: (item: ListItem) => void;
 };
 
-export default function ICMSListBox({ items, className, onItemClick }: Readonly<ICMSListBoxProps>) {
+export default function ICMSListBox({ items, className='', onItemClick }: Readonly<ICMSListBoxProps>) {
   return (
     <div
-      className={`w-full h-full overflow-y-auto bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 ${className ?? ''}`}
+      className={clsx('w-full h-full overflow-y-auto bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100', className)}
       role="listbox"
     >
 
@@ -65,7 +66,7 @@ export default function ICMSListBox({ items, className, onItemClick }: Readonly<
                 <a
                   href={href}
                   title={it.title}
-                  className={`flex items-center gap-3 p-3 w-full text-left cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 active:bg-gray-100 dark:active:bg-gray-700 ${it.className ?? ''}`}
+                  className={clsx('flex items-center gap-3 p-3 w-full text-left cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 active:bg-gray-100 dark:active:bg-gray-700', className)}
                 >
                   {
                     it.startContent ? <div className="flex-shrink-0">{it.startContent}</div> : null
@@ -93,7 +94,7 @@ export default function ICMSListBox({ items, className, onItemClick }: Readonly<
                 <li key={key} className="m-0">
                   <button
                     type="button"
-                    className={`flex items-center gap-3 p-3 w-full text-left cursor-pointer opacity-50`}
+                    className="flex items-center gap-3 p-3 w-full text-left cursor-pointer opacity-50"
                   >
                     {
                       it.startContent ? <div className="flex-shrink-0">{it.startContent}</div> : null
@@ -120,7 +121,7 @@ export default function ICMSListBox({ items, className, onItemClick }: Readonly<
                 <button
                   type="button"
                   onClick={() => onItemClick(it)}
-                  className={`flex items-center gap-3 p-3 w-full text-left cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 active:bg-gray-100 dark:active:bg-gray-700'} ${it.className ?? ''}`}
+                  className={clsx('flex items-center gap-3 p-3 w-full text-left cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 active:bg-gray-100 dark:active:bg-gray-700', it.className??'')}
                 >
                   {
                     it.startContent ? <div className="flex-shrink-0">{it.startContent}</div> : null
@@ -145,7 +146,7 @@ export default function ICMSListBox({ items, className, onItemClick }: Readonly<
 
           return (
             <li key={key} className="m-0">
-              <div className={`flex items-center gap-3 p-3 w-full text-left ${it.className ?? ''}`} role="option" aria-selected="false">
+              <div className={clsx('flex items-center gap-3 p-3 w-full text-left', it.className??'')} role="option" aria-selected="false">
                 <div className="flex-shrink-0">{it.startContent}</div>
                 <div className="flex-1 min-w-0">
                   <div className="text-sm font-medium truncate">{it.title}</div>

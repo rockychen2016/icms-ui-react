@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { heightMap, Radius, radiusMap, Size } from "../common";
 import { IconLang } from "./icms-icons";
+import { clsx } from "clsx";
 
 export type I18NData = {
     id: string,
@@ -28,7 +29,7 @@ export default function ICMSI18NSelect({
     const [value, setValue] = useState(locale);
     return (
         data.length > 0 ?
-            <div className={`${heightMap[size]} ${radiusMap[radius]} px-2 flex items-center bg-zinc-200 dark:bg-zinc-800 ${className}`}>
+            <div className={clsx(heightMap[size],radiusMap[radius],'px-2 flex items-center bg-zinc-200 dark:bg-zinc-800', className)}>
                 <div className="min-w-8">
                     <IconLang />
                 </div>

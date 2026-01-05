@@ -1,5 +1,6 @@
 'use client'
 import React from 'react'
+import { clsx } from 'clsx'
 
 export type ICMSImageProps = {
     imageUrl?: string
@@ -27,7 +28,7 @@ export type ICMSPicBoxProps = {
 }
 
 export default function ICMSPicBox({
-    imageHeight='h-48',
+    imageHeight = 'h-48',
     className,
     image,
     title,
@@ -62,19 +63,19 @@ export default function ICMSPicBox({
     return (
         <div className={`w-full overflow-hidden ${className}`}>
             <Wrapper
-                className={`block w-full text-left bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 shadow-sm ring-1 ring-zinc-200 dark:ring-zinc-700 overflow-hidden ${clickable && !disabled ? 'cursor-pointer hover:shadow-md' : ''} ${disabled ? 'opacity-50 pointer-events-none' : ''}`}
+                className={clsx('block w-full text-left bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 shadow-sm ring-1 ring-zinc-200 dark:ring-zinc-700 overflow-hidden', clickable && !disabled ? 'cursor-pointer hover:shadow-md' : '', disabled ? 'opacity-50 pointer-events-none' : '')}
                 {...wrapperProps}
             >
                 <div className="relative w-full overflow-hidden bg-gray-100 dark:bg-gray-800">
                     {image.imageNode ? (
-                        <div className={`w-full ${imageHeight} object-cover`}>
+                        <div className={clsx('w-full', imageHeight, 'object-cover')}>
                             {image.imageNode}
                         </div>
                     ) : image ? (
                         // eslint-disable-next-line @next/next/no-img-element
-                        <img src={image.imageUrl} alt={image.imageAlt} className={`w-full ${imageHeight} object-cover`} />
+                        <img src={image.imageUrl} alt={image.imageAlt} className={clsx('w-full', imageHeight,'object-cover')} />
                     ) : (
-                        <div className={`w-full ${imageHeight}`} />
+                        <div className={clsx('w-full', imageHeight)} />
                     )}
 
                     {image.imageOverlay ? (

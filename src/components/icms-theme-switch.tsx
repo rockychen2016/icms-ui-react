@@ -1,12 +1,19 @@
 import { useEffect, useState } from "react";
 import { AiFillMoon, AiFillSun } from "react-icons/ai";
+import { Size } from "../common";
 
 export type ThemeStyle = 'dark' | 'light';
 export type ICMSThemeSwitchProps = {
+    size?: Size,
     defaultTheme?: ThemeStyle
 }
 
 const sessionKey = '_icms_theme_style_key';
+const sizeMap = {
+    "sm": 32,
+    "md": 34,
+    "lg": 36
+}
 
 const toggle = (theme?: ThemeStyle) => {
     if (document.documentElement.classList.contains('light') || theme === 'dark') {
@@ -23,6 +30,7 @@ const toggle = (theme?: ThemeStyle) => {
 }
 
 export default function ICMSThemeSwitch({
+    size = 'md',
     defaultTheme = 'dark'
 }: Readonly<ICMSThemeSwitchProps>) {
     const [value, setValue] = useState<ThemeStyle>(defaultTheme)
@@ -41,7 +49,7 @@ export default function ICMSThemeSwitch({
             setValue(sessionStorage.getItem(sessionKey) as ThemeStyle)
         }}>
             {
-                value === 'dark' ? <AiFillSun size={32} className="opacity-50" /> : <AiFillMoon size={32} className="opacity-50" />
+                value === 'dark' ? <AiFillSun size={sizeMap[size]} className="opacity-50" /> : <AiFillMoon size={sizeMap[size]} className="opacity-50" />
             }
         </div>
     );

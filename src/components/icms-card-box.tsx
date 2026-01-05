@@ -1,4 +1,5 @@
-import { Radius, radiusMap, shapSizeMap, Size, thumbSizeMap } from "../common";
+import { Radius, radiusMap, Size, thumbSizeMap } from "../common";
+import { clsx } from "clsx";
 import ICMSCard from "./icms-card";
 export type ICMSCardBoxProps = {
     icon?: {
@@ -31,12 +32,12 @@ export default function ICMSCardBox({
         <ICMSCard
             radius={radius}
             showDivider={false}
-            className={`${className}`}
+            className={clsx(className)}
             header={
                 <div className="flex items-center justify-start gap-2">
                     {
                         icon ?
-                            <div className={`${thumbSizeMap[icon.size ?? 'md']} ${radiusMap[icon.radius??'md']} ${icon.className??''} overflow-hidden`}>
+                            <div className={clsx(thumbSizeMap[icon.size??'md'],radiusMap[icon.radius??'md'],'overflow-hidden', className)}>
                                 <img src={icon.url} alt={title} className={`object-cover`} />
                             </div>
                             : null

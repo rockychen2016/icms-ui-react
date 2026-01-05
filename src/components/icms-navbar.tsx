@@ -1,5 +1,6 @@
 'use client'
 import React, { useEffect, useRef, useState } from "react";
+import { clsx } from "clsx";
 
 export type ICMSMenuItem = {
     key?: string;
@@ -16,21 +17,24 @@ export type ICMSMenuItem = {
 
 export type ICMSNavbarProps = {
     menus: ICMSMenuItem[];
-    itemClassName?: string,
-    startContent?: React.ReactNode;
-    endContent?: React.ReactNode;
-    className?: string;
+    menuClassName?: string,
+    menuSeparation?: React.ReactNode,
+    startContent?: React.ReactNode,
+    endContent?: React.ReactNode,
+    className?: string,
     position?: 'left' | 'center' | 'right',
     childrenClass?: string,
 };
 
 export default function ICMSNavbar({
     menus,
+    menuSeparation,
     startContent,
     endContent,
     className = "",
+    menuClassName = "text-sm",
+    childrenClass = 'text-sm',
     position = 'right',
-    childrenClass = 'bg-white'
 }: ICMSNavbarProps) {
     const [desktopOpenKey, setDesktopOpenKey] = useState<string | null>(null);
     const [mobileOpen, setMobileOpen] = useState(false);
@@ -57,63 +61,71 @@ export default function ICMSNavbar({
     return (
         <nav
             ref={navRef}
-            className={`w-full ${className}`}
+            className={clsx('w-full', className)}
             aria-label="Primary"
         >
             <div className="mx-auto">
                 <div className="flex items-center justify-between">
                     <div className="flex-shrink-0">{startContent}</div>
-                    <div className={`flex items-center gap-4 ${position == 'left' ? 'flex-1' : position === 'right' ? 'flex-1 justify-end' : 'justify-center'}`}>
+                    <div className={clsx('flex items-center', position === 'left' ? 'flex-1' : position === 'right' ? 'flex-1 justify-end' : 'justify-center')}>
                         <div className="hidden md:block">
-                            <div className="flex items-center space-x-2">
+                            <div className={clsx('flex items-center', menuClassName)}>
                                 {menus.map((m, idx) => {
                                     const key = m.key ?? String(idx);
                                     const hasChildren = !!m.children?.length;
                                     const open = desktopOpenKey === key;
-                                    return (
-                                        <div
-                                            key={key}
-                                            className="relative"
-                                            onMouseEnter={() => hasChildren && setDesktopOpenKey(key)}
-                                            onMouseLeave={() => hasChildren && setDesktopOpenKey(null)}
-                                        >
-                                            {m.href ? (
-                                                <a
-                                                    href={m.href}
-                                                    className={`inline-flex items-center px-3 py-2 text-sm font-medium ${m.className ?? ''}`}
-                                                >
-                                                    {m.label}
-                                                </a>
-                                            ) : (
-                                                <button
-                                                    onClick={() => hasChildren && setDesktopOpenKey(open ? null : key)}
-                                                    className={`inline-flex items-center px-3 py-2 text-sm font-medium ${m.className ?? ''}`}
-                                                    aria-expanded={open}
-                                                >
-                                                    {m.label}
-                                                </button>
-                                            )}
-                                            <div
-                                                className={`absolute left-0 top-full z-50 rounded-t-none rounded-b-md shadow-lg min-w-[150px] dark:bg-zinc-900 ${childrenClass} ${m.children && open ? '' : 'hidden'}`}
-                                                role="menu"
+                                    const menuItem = <div
+                                        key={key}
+                                        className="relative"
+                                        onMouseEnter={() => hasChildren && setDesktopOpenKey(key)}
+                                        onMouseLeave={() => hasChildren && setDesktopOpenKey(null)}
+                                    >
+                                        {m.href ? (
+                                            <a
+                                                href={m.href}
+                                                className={clsx('inline-flex items-center px-3 py-2 font-medium', m.className)}
                                             >
-                                                <div className="w-full flex justify-start">
-                                                    <div className="flex-1">
-                                                        {m.children && m.children.map((child, cidx) => (
-                                                            <a
-                                                                key={child.key ?? `${key}-c-${cidx}`}
-                                                                href={child.href ?? "#"}
-                                                                className="block px-3 py-2 text-sm"
-                                                                role="menuitem"
-                                                            >
-                                                                {child.label}
-                                                            </a>
-                                                        ))}
-                                                    </div>
+                                                {m.label}
+                                            </a>
+                                        ) : (
+                                            <button
+                                                onClick={() => hasChildren && setDesktopOpenKey(open ? null : key)}
+                                                className={clsx('inline-flex items-center px-3 py-2 font-medium', m.className)}
+                                                aria-expanded={open}
+                                            >
+                                                {m.label}
+                                            </button>
+                                        )}
+                                        <div
+                                            className={clsx('absolute left-0 top-full z-50 rounded-t-none rounded-b-md shadow-lg min-w-[150px] dark:bg-zinc-800', childrenClass, m.children && open ? '' : 'hidden')}
+                                            role="menu"
+                                        >
+                                            <div className="w-full flex justify-start">
+                                                <div className="flex-1">
+                                                    {m.children && m.children.map((child, cidx) => (
+                                                        <a
+                                                            key={child.key ?? `${key}-c-${cidx}`}
+                                                            href={child.href ?? "#"}
+                                                            className="block px-3 py-2 text-sm"
+                                                            role="menuitem"
+                                                        >
+                                                            {child.label}
+                                                        </a>
+                                                    ))}
+                                                </div>
+                                                <div className="text-sm p-2">
                                                     {m.container ?? null}
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                    return (
+                                        (idx > 0 && menuSeparation) ?
+                                            <div key={key + '_menuSeparation'} className="flex items-center">
+                                                {menuSeparation}
+                                                {menuItem}
+                                            </div>
+                                            : menuItem
                                     );
                                 })}
                             </div>
@@ -163,11 +175,11 @@ export default function ICMSNavbar({
                                     <div key={key} className="border-b pb-2 border-gray-100 dark:border-gray-800">
                                         <div className="flex items-center justify-between">
                                             {m.href ? (
-                                                <a href={m.href} className={`block px-2 py-2 text-base ${m.className ?? ''}`}>
+                                                <a href={m.href} className={clsx('block px-2 py-2 text-base', m.className)}>
                                                     {m.label}
                                                 </a>
                                             ) : (
-                                                <div className={`px-2 py-2 text-base text-gray-700 ${m.className ?? ''}`}>{m.label}</div>
+                                                <div className={clsx('px-2 py-2 text-base text-gray-700', m.className)}>{m.label}</div>
                                             )}
                                             {hasChildren ? (
                                                 <button
@@ -187,7 +199,7 @@ export default function ICMSNavbar({
                                         </div>
 
                                         {hasChildren && opened && (
-                                            <div className="mt-2 space-y-1 px-4">
+                                            <div className={clsx('mt-2 space-y-1 px-4', childrenClass)}>
                                                 {m.children!.map((child, cidx) => (
                                                     <a
                                                         href={child.href ?? "#"}

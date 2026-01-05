@@ -1,7 +1,8 @@
 'use client'
 import React from "react";
-import { heightMap, Radius, radiusMap, shapSizeMap, Size, textSizeMap } from "../common";
-import { RxCaretLeft, RxCaretRight, RxChevronLeft, RxChevronRight, RxDoubleArrowLeft, RxDoubleArrowRight, RxPinLeft, RxPinRight } from "react-icons/rx";
+import { heightMap, Radius, radiusMap, Size } from "../common";
+import { RxChevronLeft, RxChevronRight, RxDoubleArrowLeft, RxDoubleArrowRight } from "react-icons/rx";
+import { clsx } from "clsx";
 
 export interface ICMSPageInfo {
     pageNo: number;
@@ -56,7 +57,7 @@ const ICMSPagination: React.FC<ICMSPaginationProps> = ({
 
     const makeItem = (pageNo: number, key?: string | number) => {
         const isActive = pageNo === current;
-        const className = [`icms-pagination-item border px-2 ${radiusMap[radius]} ${heightMap[size]}`, isActive ? ` ${activeColor} text-white` : null]
+        const className = ['icms-pagination-item px-2 border dark:border-zinc-700', radiusMap[radius], heightMap[size], isActive ? `${activeColor} text-white` : '']
             .filter(Boolean)
             .join(" ");
 
@@ -107,7 +108,7 @@ const ICMSPagination: React.FC<ICMSPaginationProps> = ({
         disabled: boolean,
         key: string,
     ) => {
-        const className = `icms-pagination-nav max-sm:hidden border ${radiusMap[radius]} ${heightMap[size]} px-2 py-1 ${disabled ? " disabled:text-gray-500" : ""}`;
+        const className = clsx('icms-pagination-nav max-sm:hidden border dark:border-zinc-700', radiusMap[radius], heightMap[size], 'px-2 py-1', disabled ? 'disabled:text-zinc-500' : '')
         const content = renderItemContent(icon, disabled);
         if (href) {
             return (
@@ -124,8 +125,8 @@ const ICMSPagination: React.FC<ICMSPaginationProps> = ({
     };
 
     return (
-        <nav className={`flex justify-center items-center gap-1 ${className}`} aria-label="Pagination">
-            {renderNav(<RxDoubleArrowLeft />,1, current === 1, "first")}
+        <nav className={clsx('flex justify-center items-center gap-1', className)} aria-label="Pagination">
+            {renderNav(<RxDoubleArrowLeft />, 1, current === 1, "first")}
             {renderNav(<RxChevronLeft />, Math.max(1, current - 1), current === 1, "prev")}
             <div className="flex items-center gap-1">{pages}</div>
             {renderNav(<RxChevronRight />, Math.min(totalPages, current + 1), current === totalPages, "next")}

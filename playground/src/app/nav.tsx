@@ -8,14 +8,14 @@ import ICMSThemeSwitch  from '@/components/icms-theme-switch'
 export default function Nav() {
     return (
         <ICMSNavbar
-            className='px-4 py-2'
+            className='px-3 py-2 text-2xl'
             startContent={<>LOGO</>}
             endContent={
                 <div className='flex items-center gap-2 max-sm:flex-col'>
-                    <ICMSThemeSwitch />
-                    <ICMSUser shape='circle' name='ROCK' description='rocky@iboot.xin' />
-                    <ICMSSearch isClean onSearch={(v) => console.log(v)} />
-                    <ICMSI18NSelect radius='full' data={[
+                    <ICMSThemeSwitch size='sm' />
+                    <ICMSUser size='sm' shape='circle' name='ROCK' description='rocky@iboot.xin' />
+                    <ICMSSearch isClean size='sm' onSearch={(v) => console.log(v)} />
+                    <ICMSI18NSelect size='sm' radius='full' data={[
                         {
                             "id": 'zh-CN',
                             "name": '简体中文'
@@ -29,6 +29,7 @@ export default function Nav() {
                     />
                 </div>
             }
+            menuSeparation={<>/</>}
             position='left'
             menus={[
                 {

@@ -1,4 +1,4 @@
-
+import { clsx } from "clsx";
 export default function ICMSContentBlock({
     title,
     subTitle,
@@ -12,7 +12,7 @@ export default function ICMSContentBlock({
 }) {
 
     return (
-        <div className={`w-full px-3 py-8 flex flex-col gap-4 ${className ?? ''}`}>
+        <div className={clsx('w-full px-3 py-8 flex flex-col gap-4', className)}>
             <div className="flex flex-col justify-center items-center">
                 <h3 className="text-xl sm:text-2xl font-bold">{title}</h3>
                 {

@@ -14,7 +14,7 @@ export default function Banner() {
             <div className='w-full h-full bg-red-500 flex flex-col rounded-sm p-8'>
                 <h1>关于</h1>
                 <p className='text-sm'>好的很好!</p>
-            </div>,
+            </div>
         ]} />
     );
 }

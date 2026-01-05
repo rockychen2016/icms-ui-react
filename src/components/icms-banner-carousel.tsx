@@ -1,6 +1,7 @@
 'use client'
 import React, { useEffect, useRef, useState } from 'react'
 import { VscChevronLeft, VscChevronRight } from 'react-icons/vsc' // Import VscChevronLeft
+import { clsx } from 'clsx'
 
 export type ICMSBannerCarouselProps = {
 	width?: string | number
@@ -78,7 +79,7 @@ export default function ICMSBannerCarousel({
 	return (
 		<div
 			ref={containerRef}
-			className={`min-h-[300px] lg:min-h-[500px] ${className}`}
+			className={clsx('min-h-[300px] lg:min-h-[500px]', className)}
 			style={{ width, height, position: 'relative', overflow: 'hidden', ...style }}
 			onMouseEnter={() => {
 				if (timerRef.current) {

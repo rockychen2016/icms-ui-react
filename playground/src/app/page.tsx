@@ -66,11 +66,11 @@ export default function Page() {
           <div className='flex-1'>2</div>
         </div>
       </ICMSContentBlock>
-      <div className='flex items-stretch flex-nowrap gap-5'>
+      <div className='p-3 flex items-stretch flex-nowrap gap-5'>
         <ICMSCard className='rounded-sm'
           header={
             <div className='flex items-center gap-2'>
-              <div>1</div>
+              <div>ICMSCard</div>
               <div>2</div>
             </div>
           }
@@ -86,16 +86,18 @@ export default function Page() {
           star={3}
           content='很好，不错'
           user={{
-            name: 'rocky.chen',
-            description: '26/01/01'
+            name: 'Rock.chen',
+            description: '26/01/01',
+            shape:'circle'
           }}
         />
         <ICMSCommentCard
           star={3}
           content='很好，不错'
           user={{
-            name: 'rocky.chen',
-            description: '26/01/01'
+            name: 'Rocky.chen',
+            description: '26/01/01',
+            shape:'circle'
           }}
         />
       </div>
@@ -111,7 +113,6 @@ export default function Page() {
         />
       </div>
       <div className='flex flex-col px-3 py-10 gap-5'>
-
         <ICMSCard
           header={
             <h3>ICMSCardBox</h3>
@@ -158,7 +159,6 @@ export default function Page() {
           }
         />
       </div>
-
       <PageFooter />
     </main>
   )
