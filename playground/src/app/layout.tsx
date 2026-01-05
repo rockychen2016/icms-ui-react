@@ -7,7 +7,7 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="zh-CN" style={{colorScheme:'light'}}>
+    <html lang="zh-CN">
       <body>{children}</body>
     </html>
   )

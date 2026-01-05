@@ -60,7 +60,7 @@ export default function ICMSPicBox({
     }
 
     return (
-        <div className={`w-full ${className}`}>
+        <div className={`w-full overflow-hidden ${className}`}>
             <Wrapper
                 className={`block w-full text-left bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 shadow-sm ring-1 ring-zinc-200 dark:ring-zinc-700 overflow-hidden ${clickable && !disabled ? 'cursor-pointer hover:shadow-md' : ''} ${disabled ? 'opacity-50 pointer-events-none' : ''}`}
                 {...wrapperProps}

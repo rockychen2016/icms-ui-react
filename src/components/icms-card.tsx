@@ -1,10 +1,4 @@
-const radiusMap = {
-    "none": "",
-    "sm": " rounded-sm",
-    "md": " rounded-md",
-    "lg": " rounded-lg",
-    "full": "rounded-full"
-}
+import { Radius, radiusMap } from "../common";
 
 export type ICMSCardProps = {
     className?: string,
@@ -12,7 +6,7 @@ export type ICMSCardProps = {
     body: React.ReactNode,
     footer?: React.ReactNode,
     showDivider?: boolean,
-    radius?: 'none' | 'sm' | 'md' | 'lg' | 'full'
+    radius?: Radius
 }
 export default function ICMSCard({
     className = '',
@@ -23,7 +17,7 @@ export default function ICMSCard({
     radius = 'md'
 }: Readonly<ICMSCardProps>) {
     return (
-        <div className={`w-full min-w-[320px] flex flex-col shadow-sm ring-1 ring-zinc-200 dark:ring-zinc-700 ${radiusMap[radius]} ${className}`}>
+        <div className={`w-full flex flex-col flex-shrink shadow-sm ring-1 ring-zinc-200 dark:ring-zinc-700 ${radiusMap[radius]} ${className}`}>
             <div className="p-2">
                 {header}
             </div>

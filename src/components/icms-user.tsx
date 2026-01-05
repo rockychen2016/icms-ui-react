@@ -1,4 +1,5 @@
 import React from 'react';
+import { shapSizeMap } from '../common';
 
 export type ICMSUserProps = {
   name: string;
@@ -10,18 +11,11 @@ export type ICMSUserProps = {
   onClick?: () => void;
 };
 
-const sizeMap = {
-  sm: 'w-8 h-8',
-  md: 'w-10 h-10',
-  lg: 'w-14 h-14',
-};
 
 export default function ICMSUser({ name, description, avatarUrl, size = 'md', shape = 'rounded', className, onClick }: ICMSUserProps) {
-  const sizeCls = sizeMap[size] ?? sizeMap.md;
+  const sizeCls = shapSizeMap[size] ?? shapSizeMap.md;
   const radiusCls = shape === 'circle' ? 'rounded-full' : 'rounded-md';
-
   const Container: any = onClick ? 'button' : 'div';
-  
   return (
     <Container
       type={onClick ? 'button' : undefined}

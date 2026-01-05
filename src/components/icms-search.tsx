@@ -1,12 +1,7 @@
 'use client'
 import { useState } from "react";
 import { AiFillCloseCircle, AiOutlineSearch } from "react-icons/ai";
-const sizeMap = {
-  sm: 'h-8',
-  md: 'h-10',
-  lg: 'h-14',
-};
-type Size = 'sm' | 'md' | 'lg';
+import { heightMap, Size } from "../common";
 export type ICMSSearchProps = {
     className?: string,
     isClean?: boolean,
@@ -26,7 +21,7 @@ export default function ICMSSearch({
         <div className={`${className ?? 'w-full px-4 flex items-center gap-1 bg-gray-200 dark:bg-gray-700 rounded-full'}`}>
             <input
                 type="text"
-                className={`${sizeMap[size]} flex-1 placeholder:text-gray-500 placeholder:text-sm outline-none text-sm bg-transparent`}
+                className={`${heightMap[size]} flex-1 placeholder:text-gray-500 placeholder:text-sm outline-none text-sm bg-transparent`}
                 value={value}
                 onInput={(e) => {
                     const v = e.currentTarget.value;

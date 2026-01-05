@@ -3,6 +3,7 @@ import ICMSNavbar from '@/components/icms-navbar'
 import ICMSSearch from '@/components/icms-search'
 import ICMSUser from '@/components/icms-user';
 import ICMSI18NSelect from '@/components/icms-i18n-select';
+import ICMSThemeSwitch  from '@/components/icms-theme-switch'
 
 export default function Nav() {
     return (
@@ -11,6 +12,7 @@ export default function Nav() {
             startContent={<>LOGO</>}
             endContent={
                 <div className='flex items-center gap-2 max-sm:flex-col'>
+                    <ICMSThemeSwitch />
                     <ICMSUser shape='circle' name='ROCK' description='rocky@iboot.xin' />
                     <ICMSSearch isClean onSearch={(v) => console.log(v)} />
                     <ICMSI18NSelect radius='full' data={[
@@ -22,7 +24,7 @@ export default function Nav() {
                             "name": "English"
                         }
                     ]}
-                        locale='zh-CN'
+                        locale='en'
                         onValueChange={(v) => console.log(v)}
                     />
                 </div>

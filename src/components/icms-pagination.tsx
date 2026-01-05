@@ -1,21 +1,7 @@
 'use client'
 import React from "react";
-
-const sizeMap = {
-    "sm": "text-sm",
-    "md": "text-base",
-    "lg": "text-xl"
-}
-
-const radiusMap = {
-    "none": "",
-    "sm": " rounded-sm",
-    "md": " rounded-md",
-    "lg": " rounded-lg",
-    "full": "rounded-full"
-}
-
-
+import { heightMap, Radius, radiusMap, shapSizeMap, Size, textSizeMap } from "../common";
+import { RxCaretLeft, RxCaretRight, RxChevronLeft, RxChevronRight, RxDoubleArrowLeft, RxDoubleArrowRight, RxPinLeft, RxPinRight } from "react-icons/rx";
 
 export interface ICMSPageInfo {
     pageNo: number;
@@ -25,8 +11,8 @@ export interface ICMSPageInfo {
 
 export interface ICMSPaginationProps {
     className?: string,
-    size?: 'sm' | 'md' | 'lg',
-    radius?: 'none' | 'sm' | 'md' | 'lg' | 'full'
+    size?: Size,
+    radius?: Radius,
     activeColor?: string
     pageInfo: ICMSPageInfo;
     onClick?: (pageNo: number) => void;
@@ -37,11 +23,6 @@ export interface ICMSPaginationProps {
     href?: string | ((pageNo: number) => string);
     /** 最大显示页码数量，默认 7 */
     maxPagesToShow?: number;
-    /** 导航图标或渲染函数（传入 disabled: boolean） */
-    firstIcon?: React.ReactNode | ((disabled: boolean) => React.ReactNode);
-    prevIcon?: React.ReactNode | ((disabled: boolean) => React.ReactNode);
-    nextIcon?: React.ReactNode | ((disabled: boolean) => React.ReactNode);
-    lastIcon?: React.ReactNode | ((disabled: boolean) => React.ReactNode);
 }
 
 const getTotalPages = (pageInfo: ICMSPageInfo) =>
@@ -62,11 +43,7 @@ const ICMSPagination: React.FC<ICMSPaginationProps> = ({
     pageInfo,
     onClick,
     href,
-    maxPagesToShow = 7,
-    firstIcon,
-    prevIcon,
-    nextIcon,
-    lastIcon,
+    maxPagesToShow = 7
 }) => {
     const totalPages = getTotalPages(pageInfo);
     const current = Math.min(Math.max(1, pageInfo.pageNo || 1), totalPages);
@@ -79,7 +56,7 @@ const ICMSPagination: React.FC<ICMSPaginationProps> = ({
 
     const makeItem = (pageNo: number, key?: string | number) => {
         const isActive = pageNo === current;
-        const className = [`icms-pagination-item border px-2 py-1 ${radiusMap[radius]}`, isActive ? ` ${activeColor} text-white` : null]
+        const className = [`icms-pagination-item border px-2 ${radiusMap[radius]} ${heightMap[size]}`, isActive ? ` ${activeColor} text-white` : null]
             .filter(Boolean)
             .join(" ");
 
@@ -120,41 +97,39 @@ const ICMSPagination: React.FC<ICMSPaginationProps> = ({
         pages.push(makeItem(totalPages));
     }
 
-    const renderItemContent = (label: React.ReactNode, icon?: React.ReactNode | ((disabled: boolean) => React.ReactNode), disabled?: boolean) => {
-        if (icon) return typeof icon === "function" ? icon(Boolean(disabled)) : icon;
-        return label;
+    const renderItemContent = (icon: React.ReactNode | ((disabled: boolean) => React.ReactNode), disabled?: boolean) => {
+        return typeof icon === "function" ? icon(Boolean(disabled)) : icon;
     };
 
     const renderNav = (
-        label: React.ReactNode,
+        icon: React.ReactNode | ((disabled: boolean) => React.ReactNode),
         target: number,
         disabled: boolean,
-        key?: string,
-        icon?: React.ReactNode | ((disabled: boolean) => React.ReactNode),
+        key: string,
     ) => {
-        const className = `icms-pagination-nav border ${radiusMap[radius]} px-2 py-1 ${disabled ? " disabled:text-gray-500" : ""}`;
-        const content = renderItemContent(label, icon, disabled);
+        const className = `icms-pagination-nav max-sm:hidden border ${radiusMap[radius]} ${heightMap[size]} px-2 py-1 ${disabled ? " disabled:text-gray-500" : ""}`;
+        const content = renderItemContent(icon, disabled);
         if (href) {
             return (
-                <a key={key ?? String(label)} href={buildHref(href, target)} className={className} aria-disabled={disabled}>
+                <a key={key} href={buildHref(href, target)} className={className} aria-disabled={disabled}>
                     {content}
                 </a>
             );
         }
         return (
-            <button key={key ?? String(label)} onClick={handleClick(target)} className={className} disabled={disabled}>
+            <button key={key} onClick={handleClick(target)} className={className} disabled={disabled}>
                 {content}
             </button>
         );
     };
 
     return (
-        <nav className={`flex justify-center items-center gap-1 ${sizeMap[size]} ${className}`} aria-label="Pagination">
-            {renderNav("首页", 1, current === 1, "first", firstIcon)}
-            {renderNav("上一页", Math.max(1, current - 1), current === 1, "prev", prevIcon)}
+        <nav className={`flex justify-center items-center gap-1 ${className}`} aria-label="Pagination">
+            {renderNav(<RxDoubleArrowLeft />,1, current === 1, "first")}
+            {renderNav(<RxChevronLeft />, Math.max(1, current - 1), current === 1, "prev")}
             <div className="flex items-center gap-1">{pages}</div>
-            {renderNav("下一页", Math.min(totalPages, current + 1), current === totalPages, "next", nextIcon)}
-            {renderNav("尾页", totalPages, current === totalPages, "last", lastIcon)}
+            {renderNav(<RxChevronRight />, Math.min(totalPages, current + 1), current === totalPages, "next")}
+            {renderNav(<RxDoubleArrowRight />, totalPages, current === totalPages, "last")}
         </nav>
     );
 };

@@ -9,18 +9,19 @@ import ICMSPicBox from '@/components/icms-pic-box';
 import ListBox from './listbox';
 import ArticleListBox from './articleListbox';
 import ICMSPagination from '@/components/icms-pagination';
+import ICMSCardBox from '@/components/icms-card-box';
 
 export default function Page() {
   return (
     <main style={{ fontFamily: 'system-ui, -apple-system, Segoe UI, Roboto' }}>
       <Nav />
       <Banner />
-      <ICMSContentBlock className='bg-slate-100' title='产品中心'>
+      <ICMSContentBlock title='产品中心'>
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4'>
           <ICMSPicBox
             className='rounded-md'
             image={{
-              imageUrl: '/image/product.jpg',
+              imageUrl: 'https://picsum.photos/200/300',
               imageAlt: '示例图片',
               imageOverlay: <span className='px-2 py-1 bg-red-500 text-white text-xs rounded'>新品</span>,
             }}
@@ -32,7 +33,7 @@ export default function Page() {
           <ICMSPicBox
             className='rounded-md'
             image={{
-              imageUrl: 'images/sample-2.jpg',
+              imageUrl: 'https://picsum.photos/200/300',
               imageAlt: '示例图片2',
               imageOverlay: <span className='px-2 py-1 bg-green-600 text-white text-xs rounded'>热卖</span>
             }}
@@ -46,7 +47,7 @@ export default function Page() {
           <ICMSPicBox
             className='rounded-md'
             image={{
-              imageUrl: 'images/sample-2.jpg',
+              imageUrl: 'https://picsum.photos/200/300?random=1',
               imageAlt: '示例图片2',
               imageOverlay: <span className='px-2 py-1 bg-green-600 text-white text-xs rounded'>热卖</span>
             }}
@@ -59,7 +60,7 @@ export default function Page() {
           />
         </div>
       </ICMSContentBlock>
-      <ICMSContentBlock className='bg-slate-200' title='经营理念' subTitle='xxxx'>
+      <ICMSContentBlock className='bg-slate-200 dark:bg-slate-800 dark:text-white' title='经营理念' subTitle='xxxx'>
         <div className='flex flex-col md:flex-row md:justify-start gap-4'>
           <div className='flex-1'>1</div>
           <div className='flex-1'>2</div>
@@ -109,6 +110,55 @@ export default function Page() {
           }}
         />
       </div>
+      <div className='flex flex-col px-3 py-10 gap-5'>
+
+        <ICMSCard
+          header={
+            <h3>ICMSCardBox</h3>
+          }
+          body={
+            <div className='w-full p-2 flex justify-start gap-5 max-sm:flex-col'>
+              <ICMSCardBox
+                icon={{
+                  url: 'https://picsum.photos/200/300?random=1',
+                  size:'sm'
+                }}
+                title='Abc'
+                subTitle='好的，好的'
+                content="中华人民共和国中华人民共和国"
+                footer={
+                  <div className='flex items-center justify-between'>
+                    <div>111</div>
+                    <div>
+                      <a href='http://www.baidu.com'>百度</a>
+                    </div>
+                  </div>
+                }
+              />
+              <ICMSCardBox
+                className='bg-gradient-to-tr from-cyan-500 to-blue-500 shadow-sm ring-0'
+                icon={{
+                  url: 'https://picsum.photos/200/300?random=1',
+                  size:'sm',
+                  className:'ring-1 ring-white'
+                }}
+                title='Abc'
+                subTitle='好的，好的'
+                content="中华人民共和国中华人民共和国"
+                footer={
+                  <div className='flex items-center justify-between'>
+                    <div>111</div>
+                    <div>
+                      <a href='http://www.baidu.com'>百度1</a>
+                    </div>
+                  </div>
+                }
+              />
+            </div>
+          }
+        />
+      </div>
+
       <PageFooter />
     </main>
   )
