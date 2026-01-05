@@ -30,3 +30,6 @@ export type { ICMSImageProps, ICMSLinkProps, ICMSPicBoxProps } from './component
 
 export { default as ICMSPageination } from './components/icms-pagination';
 export type { ICMSPageInfo, ICMSPaginationProps } from './components/icms-pagination'
+
+export { default as ICMSI18NSelect} from './components/icms-i18n-select';
+export type { I18NData } from './components/icms-i18n-select';
