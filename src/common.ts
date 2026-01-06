@@ -30,5 +30,15 @@ export const textSizeMap = {
     "lg": "text-xl"
 }
 
+export const bgColorMap ={
+    "primary":"bg-primary",
+    "secondary":"bg-secondary",
+    "success":"bg-success",
+    "warning":"bg-warning",
+    "danger":"bg-danger",
+    "default":"bg-default",
+}
+
+export type Color = 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'default'
 export type Size = 'sm' | 'md' | 'lg';
 export type Radius = 'none' | 'sm' | 'md' | 'lg' | 'full'

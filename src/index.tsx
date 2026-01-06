@@ -26,7 +26,7 @@ export { default as ICMSCommentCard } from './components/icms-comment-card';
 export type { ICMSCommentCardProps } from './components/icms-comment-card'
 
 export { default as ICMSPicBox } from './components/icms-pic-box'
-export type { ICMSImageProps, ICMSLinkProps, ICMSPicBoxProps } from './components/icms-pic-box'
+export type { ImageProps, ICMSLinkProps, ICMSPicBoxProps } from './components/icms-pic-box'
 
 export { default as ICMSPageination } from './components/icms-pagination';
 export type { ICMSPageInfo, ICMSPaginationProps } from './components/icms-pagination'
@@ -39,3 +39,12 @@ export type { ICMSCardBoxProps } from './components/icms-card-box';
 
 export { default as ICMSThemeSwitch } from './components/icms-theme-switch';
 export type { ICMSThemeSwitchProps, ThemeStyle } from './components/icms-theme-switch'
+
+export { default as ICMSImage } from './components/icms-image';
+export type { ICMSImageProps } from './components/icms-image';
+
+export { default as ICMSButton } from './components/icms-button';
+export type { ICMSButtonProps } from './components/icms-button';
+
+export { radiusMap, heightMap, shapSizeMap, thumbSizeMap, textSizeMap, bgColorMap } from './common'
+export type { Color, Size, Radius } from './common'

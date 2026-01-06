@@ -10,6 +10,8 @@ import ListBox from './listbox';
 import ArticleListBox from './articleListbox';
 import ICMSPagination from '@/components/icms-pagination';
 import ICMSCardBox from '@/components/icms-card-box';
+import ICMSImage from '@/components/icms-image';
+import ICMSButton from '@/components/icms-button';
 
 export default function Page() {
   return (
@@ -88,7 +90,7 @@ export default function Page() {
           user={{
             name: 'Rock.chen',
             description: '26/01/01',
-            shape:'circle'
+            shape: 'circle'
           }}
         />
         <ICMSCommentCard
@@ -97,7 +99,7 @@ export default function Page() {
           user={{
             name: 'Rocky.chen',
             description: '26/01/01',
-            shape:'circle'
+            shape: 'circle'
           }}
         />
       </div>
@@ -122,7 +124,7 @@ export default function Page() {
               <ICMSCardBox
                 icon={{
                   url: 'https://picsum.photos/200/300?random=1',
-                  size:'sm'
+                  size: 'sm'
                 }}
                 title='Abc'
                 subTitle='好的，好的'
@@ -140,8 +142,8 @@ export default function Page() {
                 className='bg-gradient-to-tr from-cyan-500 to-blue-500 shadow-sm ring-0'
                 icon={{
                   url: 'https://picsum.photos/200/300?random=1',
-                  size:'sm',
-                  className:'ring-1 ring-white'
+                  size: 'sm',
+                  className: 'ring-1 ring-white'
                 }}
                 title='Abc'
                 subTitle='好的，好的'
@@ -154,6 +156,37 @@ export default function Page() {
                     </div>
                   </div>
                 }
+              />
+            </div>
+          }
+        />
+      </div>
+
+      <div className='flex px-3 py-10'>
+        <ICMSCard
+          header={`ICMSImage`}
+          body={
+            <div className='flex items-center gap-3'>
+              <ICMSImage
+                src='https://picsum.photos/200/300'
+                alt='xxx'
+              />
+              <ICMSImage
+                src='https://picsum.photos/200/300'
+                alt='xxx'
+              />
+            </div>
+          }
+        />
+      </div>
+      <div className='flex px-3 py-10'>
+        <ICMSCard
+          header={<>ICMSButton</>}
+          body={
+            <div className='flex items-center gap-3'>
+              <ICMSButton
+                text='Button'
+                color='primary'
               />
             </div>
           }

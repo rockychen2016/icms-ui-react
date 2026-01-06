@@ -15,29 +15,33 @@ const sizeMap = {
     "lg": 36
 }
 
-const toggle = (theme?: ThemeStyle) => {
-    if (document.documentElement.classList.contains('light') || theme === 'dark') {
-        document.documentElement.classList.remove('light');
-        document.documentElement.classList.add('dark')
-        document.documentElement.style.setProperty('color-scheme', 'dark')
-        sessionStorage.setItem(sessionKey, 'dark');
+const setStyle = (theme: ThemeStyle) => {
+    const removeStyle = theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.classList.remove(removeStyle);
+    document.documentElement.classList.add(theme)
+    document.documentElement.style.setProperty('color-scheme', theme)
+    sessionStorage.setItem(sessionKey, theme);
+}
+
+const toggle = () => {
+    if (document.documentElement.classList.contains('light')) {
+        setStyle('dark')
     } else {
-        document.documentElement.classList.remove('dark');
-        document.documentElement.classList.add('light')
-        document.documentElement.style.setProperty('color-scheme', 'light')
-        sessionStorage.setItem(sessionKey, 'light');
+        setStyle('light')
     }
 }
+
 
 export default function ICMSThemeSwitch({
     size = 'md',
     defaultTheme = 'dark'
 }: Readonly<ICMSThemeSwitchProps>) {
     const [value, setValue] = useState<ThemeStyle>(defaultTheme)
+
     useEffect(() => {
         const style = sessionStorage.getItem(sessionKey);
         const sessionTheme: ThemeStyle = style ? (style as ThemeStyle) : defaultTheme;
-        toggle(sessionTheme);
+        setStyle(sessionTheme);
         if (sessionTheme != value) {
             setValue(sessionTheme);
         }
@@ -49,7 +53,7 @@ export default function ICMSThemeSwitch({
             setValue(sessionStorage.getItem(sessionKey) as ThemeStyle)
         }}>
             {
-                value === 'dark' ? <AiFillSun size={sizeMap[size]} className="opacity-50" /> : <AiFillMoon size={sizeMap[size]} className="opacity-50" />
+                value === 'dark' ? <AiFillMoon size={sizeMap[size]} className="opacity-50" /> : <AiFillSun size={sizeMap[size]} className="opacity-50" />
             }
         </div>
     );

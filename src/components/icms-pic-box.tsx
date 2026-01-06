@@ -2,7 +2,7 @@
 import React from 'react'
 import { clsx } from 'clsx'
 
-export type ICMSImageProps = {
+export type ImageProps = {
     imageUrl?: string
     imageAlt?: string
     imageNode?: React.ReactNode
@@ -16,7 +16,7 @@ export type ICMSLinkProps = {
 
 export type ICMSPicBoxProps = {
     className?: string,
-    image: ICMSImageProps,
+    image: ImageProps,
     title: React.ReactNode
     description?: React.ReactNode
     descriptionLines?: number
