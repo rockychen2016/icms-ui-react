@@ -2,16 +2,17 @@ import React from 'react'
 import Banner from './banner'
 import Nav from './nav'
 import PageFooter from './page-footer'
-import ICMSContentBlock from '@/components/icms-content-block';
-import ICMSCard from '@/components/icms-card';
-import ICMSCommentCard from '@/components/icms-comment-card'
-import ICMSPicBox from '@/components/icms-pic-box';
+import ICMSContentBlock from '~/components/icms-content-block';
+import ICMSCard from '~/components/icms-card';
+import ICMSCommentCard from '~/components/icms-comment-card'
+import ICMSPicBox from '~/components/icms-pic-box';
 import ListBox from './listbox';
 import ArticleListBox from './articleListbox';
-import ICMSPagination from '@/components/icms-pagination';
-import ICMSCardBox from '@/components/icms-card-box';
-import ICMSImage from '@/components/icms-image';
-import ICMSButton from '@/components/icms-button';
+import ICMSPagination from '~/components/icms-pagination';
+import ICMSCardBox from '~/components/icms-card-box';
+import ICMSImage from '~/components/icms-image';
+import ICMSButton from '~/components/icms-button';
+import { AiOutlineSave } from 'react-icons/ai';
 
 export default function Page() {
   return (
@@ -114,13 +115,13 @@ export default function Page() {
           }}
         />
       </div>
-      <div className='flex flex-col px-3 py-10 gap-5'>
+      <div className='flex flex-col p-3 gap-5'>
         <ICMSCard
           header={
             <h3>ICMSCardBox</h3>
           }
           body={
-            <div className='w-full p-2 flex justify-start gap-5 max-sm:flex-col'>
+            <div className='p-2 flex gap-3 max-sm:flex-col'>
               <ICMSCardBox
                 icon={{
                   url: 'https://picsum.photos/200/300?random=1',
@@ -183,10 +184,53 @@ export default function Page() {
         <ICMSCard
           header={<>ICMSButton</>}
           body={
-            <div className='flex items-center gap-3'>
+            <div className='w-full flex items-center flex-wrap gap-2'>
               <ICMSButton
-                text='Button'
+                text='Primary'
                 color='primary'
+              />
+              <ICMSButton
+                text='Primary'
+                color='primary'
+                disabled={true}
+              />
+              <ICMSButton
+                text='Secondary'
+                color='secondary'
+              />
+              <ICMSButton
+                text='Success'
+                color='success'
+              />
+              <ICMSButton
+                text='Warning'
+                color='warning'
+              />
+              <ICMSButton
+                text='Danger'
+                color='danger'
+              />
+              <ICMSButton
+                text='Default'
+                color='default'
+              />
+              <ICMSButton
+                text='Loading'
+                color='primary'
+                loading
+              />
+              <ICMSButton
+
+                text='IconButton'
+                color='primary'
+                icon={<AiOutlineSave size={20} />}
+              />
+              <ICMSButton
+                text='Small'
+                color='primary'
+                radius='full'
+                size='sm'
+                icon={<AiOutlineSave size={16} />}
               />
             </div>
           }

@@ -1,14 +1,12 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
 
 /* library base styles */
 @theme {
-  --color-icms-dark:#333333;
-}
-
-.icms-pagination-item{
-  display: flex !important;
-  padding: 4px !important;
-  background-color: blue !important;
+  --color-primary: oklch(62.3% 0.214 259.815);
+  --color-secondary: oklch(58.5% 0.233 277.117);
+  --color-success: oklch(69.6% 0.17 162.48);
+  --color-warning: oklch(76.9% 0.188 70.08);
+  --color-danger: oklch(64.5% 0.246 16.439);
+  --color-default: oklch(55.1% 0.027 264.364);
 }

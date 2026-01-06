@@ -1,9 +1,9 @@
 'use client'
-import ICMSNavbar from '@/components/icms-navbar'
-import ICMSSearch from '@/components/icms-search'
-import ICMSUser from '@/components/icms-user';
-import ICMSI18NSelect from '@/components/icms-i18n-select';
-import ICMSThemeSwitch  from '@/components/icms-theme-switch'
+import ICMSNavbar from '~/components/icms-navbar'
+import ICMSSearch from '~/components/icms-search'
+import ICMSUser from '~/components/icms-user';
+import ICMSI18NSelect from '~/components/icms-i18n-select';
+import ICMSThemeSwitch  from '~/components/icms-theme-switch'
 
 export default function Nav() {
     return (

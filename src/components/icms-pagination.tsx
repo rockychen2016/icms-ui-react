@@ -40,7 +40,7 @@ const ICMSPagination: React.FC<ICMSPaginationProps> = ({
     className = '',
     size = 'md',
     radius = 'md',
-    activeColor = 'bg-red-500',
+    activeColor = 'bg-primary',
     pageInfo,
     onClick,
     href,

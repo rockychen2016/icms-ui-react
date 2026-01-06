@@ -1,21 +1,24 @@
 {
-  "name": "@icms/components",
-  "version": "0.1.0",
+  "name": "icms-components",
+  "version": "0.1.6",
   "private": false,
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "dist/styles.css"
   ],
   "sideEffects": [
     "dist/styles.css"
   ],
   "exports": {
     ".": {
-      "import": "./dist/index.esm.js",
-      "require": "./dist/index.cjs.js"
-    }
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./styles.css": "./dist/styles.css",
+    "./style": "./dist/styles.css"
   },
   "scripts": {
     "build": "tsup src/index.tsx --dts --format cjs,esm --sourcemap --out-dir dist",
@@ -27,17 +30,19 @@
     "playground:build": "cd playground && npm run build"
   },
   "peerDependencies": {
-    "next": ">=13",
     "react": ">=18",
     "react-dom": ">=18"
   },
   "devDependencies": {
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
+    "@tailwindcss/cli": "latest",
+    "@tailwindcss/postcss": "^4.1.18",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
     "autoprefixer": "latest",
     "clsx": "^2.1.1",
     "postcss": "latest",
-    "tailwindcss": "latest",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "tsup": "^8.5.1",
     "typescript": "^5.0.0"
   },

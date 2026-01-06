@@ -1,5 +1,5 @@
 'use client'
-import ICMSListBox from "@/components/icms-list-box";
+import ICMSListBox from "~/components/icms-list-box";
 
 
 export default function ListBox() {

@@ -1,4 +1,4 @@
-import ICMSPageFooter from '@/components/icms-page-footer'
+import ICMSPageFooter from '~/components/icms-page-footer'
 export default function PageFooter() {
     return (
         <ICMSPageFooter

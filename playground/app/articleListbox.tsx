@@ -1,5 +1,5 @@
 'use client'
-import ICMSArticleList from "@/components/icms-article-list-box";
+import ICMSArticleList from "~/components/icms-article-list-box";
 
 export default function ArticleListBox() {
     return (
